@@ -68,8 +68,11 @@ class LoginController extends Controller
 
     public function loginWithFaceCheck(Request $request)
     {
-        $username = $request->username;
-        $image = str_replace("data:image/png:base64,", "", $username = $request->image);
+
+
+        // $username = $request->username;
+        // $image = str_replace("data:image/png:base64,", "", $username = $request->image);
+        $image = str_replace("data:image/png:base64,", "", $request->image);
         $response = BiznetHelper::identifyface($image);
         $error = "-";
         Log::info($response);

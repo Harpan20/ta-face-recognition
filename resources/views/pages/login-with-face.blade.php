@@ -89,15 +89,15 @@
                     >
                         @csrf
                         <div class="intro-x mt-8">
-                            <input
+                            {{-- <input
                                 class="intro-x login__input form-control {{ session()->has('notif') ? 'border-danger' : '' }} block py-3 px-4"
                                 name="username"
                                 data-username=""
                                 type="text"
                                 placeholder="Username"
-                            >
+                            > --}}
                             <input
-                                class="intro-x login__input form-control block py-3 px-4 hidden"
+                                class="intro-x login__input form-control py-3 px-4 hidden"
                                 name="image"
                                 data-image=""
                                 type="text"
