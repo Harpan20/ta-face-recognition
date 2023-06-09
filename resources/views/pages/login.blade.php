@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-    class="light theme-multipilar"
+    class="light theme-adinusa"
     lang="en"
 >
 <!-- BEGIN: Head -->
