@@ -39,6 +39,9 @@ Route::get('/', function () {
 Route::get('login', [LoginController::class, 'login'])->name('admin.login');
 Route::post('login', [LoginController::class, 'proseslogin'])->name('admin.proses');
 
+Route::get('login-with-face', [LoginController::class, 'loginWithFaceIndex'])->name('admin.login.face.index');
+Route::post('login-with-face', [LoginController::class, 'loginWithFaceCheck'])->name('admin.login.face.check');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
