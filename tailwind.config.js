@@ -53,6 +53,7 @@ module.exports = {
                     slate: colors.slate,
                 }),
                 maroon: '193 43 64',
+                bluetech: '16 76 186',
                 primary: withOpacityValue('--color-primary'),
                 secondary: withOpacityValue('--color-secondary'),
                 success: withOpacityValue('--color-success'),
