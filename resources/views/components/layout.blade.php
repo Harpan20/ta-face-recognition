@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html class="light theme-multipilar" lang="en">
+<html class="light theme-adinusa" lang="en">
 
 <!-- BEGIN: Head -->
 
