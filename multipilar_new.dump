@@ -1,0 +1,1187 @@
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: multipilar_new
+-- ------------------------------------------------------
+-- Server version	8.0.30
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `addresses`
+--
+
+DROP TABLE IF EXISTS `addresses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `addresses` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `province` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_main` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `addresses`
+--
+
+LOCK TABLES `addresses` WRITE;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` VALUES (1,'Multipilar Balantika','Jl. Permata Raya Blok H Kav. No. 4, Tugujaya','Jawa Barat','Tasikmalaya','Cihideung','46115','-7.346951838958031','108.21980459973618',1,NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `advantage_product`
+--
+
+DROP TABLE IF EXISTS `advantage_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `advantage_product` (
+  `advantage_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`advantage_id`,`product_id`),
+  KEY `advantage_product_product_id_foreign` (`product_id`),
+  CONSTRAINT `advantage_product_advantage_id_foreign` FOREIGN KEY (`advantage_id`) REFERENCES `advantages` (`id`),
+  CONSTRAINT `advantage_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `advantage_product`
+--
+
+LOCK TABLES `advantage_product` WRITE;
+/*!40000 ALTER TABLE `advantage_product` DISABLE KEYS */;
+INSERT INTO `advantage_product` VALUES (1,1,NULL,NULL),(1,2,NULL,NULL),(1,3,NULL,NULL),(1,4,NULL,NULL),(2,1,NULL,NULL),(2,2,NULL,NULL),(2,3,NULL,NULL),(2,4,NULL,NULL),(3,1,NULL,NULL),(4,1,NULL,NULL),(5,1,NULL,NULL),(6,1,NULL,NULL),(6,2,NULL,NULL),(6,3,NULL,NULL),(6,4,NULL,NULL),(7,1,NULL,NULL),(8,1,NULL,NULL),(8,2,NULL,NULL),(8,3,NULL,NULL),(8,4,NULL,NULL),(9,1,NULL,NULL),(10,2,NULL,NULL),(10,3,NULL,NULL),(10,4,NULL,NULL),(11,2,NULL,NULL),(11,3,NULL,NULL),(11,4,NULL,NULL),(12,2,NULL,NULL),(12,3,NULL,NULL),(12,4,NULL,NULL),(13,2,NULL,NULL),(13,3,NULL,NULL),(13,4,NULL,NULL),(14,2,NULL,NULL),(14,3,NULL,NULL),(14,4,NULL,NULL);
+/*!40000 ALTER TABLE `advantage_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `advantages`
+--
+
+DROP TABLE IF EXISTS `advantages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `advantages` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `advantages`
+--
+
+LOCK TABLES `advantages` WRITE;
+/*!40000 ALTER TABLE `advantages` DISABLE KEYS */;
+INSERT INTO `advantages` VALUES (1,'Sesuai Aturan','no description','https://lh5.googleusercontent.com/EvzBI7DjxMgjbQfsi3RKKAggj0S4Z5DXUPg-EeaAhJpxA8x_vJQtLZGwal9_DWkKYhA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Mudah Digunakan','no description','https://lh4.googleusercontent.com/jpta2uxaMoidDudyztV4Ul8pMGTJB0ISTSPvuVJn116hp_0RNHG0zdqyOToBQyPHWys=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Aplikasi Berbasis Android','no description','https://lh3.googleusercontent.com/twiJrDzIJayInY6texfWjfpZ_oyhPLDXr3XYz1LeFkw62mLzq5wE5ERptkmhizO6Iw8=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Cakupan Layanan Kantor Cabang','no description','https://lh3.googleusercontent.com/twiJrDzIJayInY6texfWjfpZ_oyhPLDXr3XYz1LeFkw62mLzq5wE5ERptkmhizO6Iw8=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Multi - User','no description','https://lh3.googleusercontent.com/twiJrDzIJayInY6texfWjfpZ_oyhPLDXr3XYz1LeFkw62mLzq5wE5ERptkmhizO6Iw8=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Transaksi Secara Realtime','no description','https://lh3.googleusercontent.com/4T8XJ8uql--_LhAcIXkbYVTkbQnrNWjN-GqbZcmeXI066RgrqXhP4ovAvg4prnwMxms=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'Fitur Otorisasi','no description','https://lh3.googleusercontent.com/twiJrDzIJayInY6texfWjfpZ_oyhPLDXr3XYz1LeFkw62mLzq5wE5ERptkmhizO6Iw8=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'Fitur Laporan Realtime','no description','https://lh4.googleusercontent.com/6MgcwD_SU-Bd0B9iFWCoB6zEtVrfUNtm7wfXwNA6DcIu3k6o_MFKsDZnAvGz22Fi9Zc=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'Fitur Keamanan Canggih','no description','https://lh3.googleusercontent.com/twiJrDzIJayInY6texfWjfpZ_oyhPLDXr3XYz1LeFkw62mLzq5wE5ERptkmhizO6Iw8=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,'Aplikasi Berbasis Web','no description','https://lh5.googleusercontent.com/LbsYt0MdRml1BsJOHF7vwsx6Fjye9NFPLivJAgG5e6YX03T6NnlH34LDFn5xpKo_mlg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(11,'Solusi Perbankan yang End-to-End','no description','https://lh3.googleusercontent.com/67FbzKH4uSSsPrFAnUuLExfrHRmhs32Z2jiQdFcDhGdsE-ePeIyC9os1rv-8cy3MmmE=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(12,'Adaptif','no description','https://lh5.googleusercontent.com/CEKJo-DqwBsuU_d7oZDI1AX-RJdNtY8z6pvjdziDFwhewQsRWahQj1qCmCA0Nxvq-4k=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(13,'Standar APU PPT','no description','https://lh5.googleusercontent.com/g4fMnsXGs3_hfPnlqpF65FTneWFTytZT0p3Vw844e2q_p164QTTElI91ANPejOHZ7rA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(14,'Standar SAK ETAP','no description','https://lh3.googleusercontent.com/Ht8KaGTJcOi6NOem5kcqlzOcL7i8nbMc7bD3BG5httVh0aI-DwEUrzqnOwpp832tYyA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `advantages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `benefit_product`
+--
+
+DROP TABLE IF EXISTS `benefit_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `benefit_product` (
+  `benefit_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`benefit_id`,`product_id`),
+  KEY `benefit_product_product_id_foreign` (`product_id`),
+  CONSTRAINT `benefit_product_benefit_id_foreign` FOREIGN KEY (`benefit_id`) REFERENCES `benefits` (`id`),
+  CONSTRAINT `benefit_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `benefit_product`
+--
+
+LOCK TABLES `benefit_product` WRITE;
+/*!40000 ALTER TABLE `benefit_product` DISABLE KEYS */;
+INSERT INTO `benefit_product` VALUES (1,1,NULL,NULL),(2,1,NULL,NULL),(2,2,NULL,NULL),(2,3,NULL,NULL),(2,4,NULL,NULL),(3,1,NULL,NULL),(3,2,NULL,NULL),(3,3,NULL,NULL),(3,4,NULL,NULL),(4,1,NULL,NULL),(5,1,NULL,NULL),(6,1,NULL,NULL),(6,2,NULL,NULL),(6,3,NULL,NULL),(6,4,NULL,NULL),(7,2,NULL,NULL),(7,3,NULL,NULL),(7,4,NULL,NULL),(8,2,NULL,NULL),(9,2,NULL,NULL),(9,3,NULL,NULL),(9,4,NULL,NULL);
+/*!40000 ALTER TABLE `benefit_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `benefits`
+--
+
+DROP TABLE IF EXISTS `benefits`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `benefits` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `benefits`
+--
+
+LOCK TABLES `benefits` WRITE;
+/*!40000 ALTER TABLE `benefits` DISABLE KEYS */;
+INSERT INTO `benefits` VALUES (1,'Branchless Banking','Memberikan pelayanan di luar kantor agar dapat memberikan pelayanan prima kepada nasabah.','https://lh4.googleusercontent.com/0R1CAeL_AVHyeSVnXjfcSWy2CjYQs8P24ll5617__eiI8XwFyKhGs4kaFqlB2FVna7g=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Reduce Operational Cost','Operasional perbankan menjadi semi otomatisasi sehingga dapat meminimalisasi SDM dan biaya operasional lainnya.','https://lh4.googleusercontent.com/HHF0TfcmlL1D3xHURhdomOrESpCY2XZb8lV2bEtVmSMMG72TKm1Rj30ZLFnxpIdihAE=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Stakeholder Decision Support','Penjelasan poin manfaat maksimal 3 baris, Penjelasan poin manfaat maksimal 3 baris, Bukan berupa poin-poin.','https://lh5.googleusercontent.com/v9XMBLlr5MbABp7NGxUENEYMVKpGGuEmPaHbaMAHCaTbz_3st7lOlSdt7ZLwEodDT2k=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Microbanking Suitable Services','Pelayanan secara langsung kepada nasabah di luar kantor sangat cocok dengan profil nasabah perbankan BPR/LKM/BMT.','https://lh6.googleusercontent.com/TP2Kr5nzDDNl7NX8gn_c4-4IV95Mm-NLoNZFzzPi7iouu4s9AVbqXXxfswtBuThlLwo=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Performance Monitoring','Memantau kinerja petugas berdasarkan pencapaian yang telah ditentukan melalui SimfoniMobile.','https://lh5.googleusercontent.com/9DMYeJ4lg9z0Ffyw-aDNd9rui2sOglUbKJ_IXOuk1UlSIOzRYSMweokrCILTm8lI6a4=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Realtime Operations','Sistem berjalan secara realtime sehingga pelayanan dapat lebih cepat dan efisien.','https://lh6.googleusercontent.com/zLYfQqJ2KbRVvErw60IEDEh4ok2ifMZppW5F5VDhc179yzoXk09nFN0anxHRo5gwt28=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'End to End Banking Solution','Memudahkan kebutuhan operasional perbankan mulai dari administrasi, laporan, funding, landing, dan deposito.','https://lh5.googleusercontent.com/PhE5X2lh2dod9CXq0M8erVPgL3hemfgGLaDG12c992vOOsV6rAMSXpzOTaKyNSSVInY=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'Sharia Core Banking System Guarantee','Core Banking System (CBS) SimfoniBMT telah memenuhi ketentuan syariah agar dapat memberikan keberkahan bagi nasabah dan BMT.','https://lh4.googleusercontent.com/yllBFULWEhQ4KdvN40c68XkM5BAYsGrJqfVxLylL2SG166nBSrtZp8-sqBGRpOWm87I=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'Minimize Human Errors','Core Banking System (CBS) dapat mengolah data secara otomatis sehingga pembukuan dan laporan akan lebih akuntabel.','https://lh5.googleusercontent.com/EvzBI7DjxMgjbQfsi3RKKAggj0S4Z5DXUPg-EeaAhJpxA8x_vJQtLZGwal9_DWkKYhA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `benefits` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'magnam','ea-totam-et',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'fugit','autem-consequatur-nulla',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'magni','quae-molestiae',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clients`
+--
+
+DROP TABLE IF EXISTS `clients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clients` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clients`
+--
+
+LOCK TABLES `clients` WRITE;
+/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+INSERT INTO `clients` VALUES (1,'Bank Galuh 1','https://lh6.googleusercontent.com/peZWxSrAo1NyaFxJRWeh8ZS3RZKk5RO4Ef9yBMgrFqUihFjDCydJz6urCFBw3hIqaXo=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Bank Kota Bogor 2','https://lh6.googleusercontent.com/0gS924c9wtllNnurxRJAOEVZ8rgUYp-atcrCxJrx2ADpeGZ50RH5X1WZQScTHTz1wjg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Bank BGJ 3','https://lh3.googleusercontent.com/h5k__uR8IRNa2SZZfTiIudmOVGZestJaCt1rzq94bp1N5CcJda90E5Kf_XcTTcU3CgA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'BPR 4','https://lh5.googleusercontent.com/K3NzNSwM69l03ztMuNFAURaHPL9CJjIhd-zTz1-z1oG3AypZOghfldopzFzcPch0OSk=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'PT. BPR Madani Sejahtera Abadi 5','https://lh3.googleusercontent.com/23l0NDX97A-m2ZA0_Li6xcSpBuaQJkrVFkrKIYt7-MkrQrBjIO9XXkXCmghSkbebO7c=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'PT. LKM Sumedang 6','https://lh5.googleusercontent.com/H9q2tZuY1r1h0tAUDfcXnCZpZekhMdyBGUIH73_mYG8fvXMOh8sI1x93Mle4X37YitY=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'BKPD Cijulang 8','https://lh5.googleusercontent.com/m-u7LpoCok1VGKaQsgV8ffwed9uJ27mbPkPoo4oVVcLFOU7Mjc7OXr0omyOzSZBlwwg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'BPR SMA 9','https://lh3.googleusercontent.com/Xk0M7EFtSjVbaX1obGxeFiczAAA0tBw-N-MGOLOUg2CLzT-Q3NBXjFZkBc3BGOn4FcA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'Bank Galuh 10','https://lh6.googleusercontent.com/peZWxSrAo1NyaFxJRWeh8ZS3RZKk5RO4Ef9yBMgrFqUihFjDCydJz6urCFBw3hIqaXo=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,'Bank Kota Bogor 11','https://lh6.googleusercontent.com/0gS924c9wtllNnurxRJAOEVZ8rgUYp-atcrCxJrx2ADpeGZ50RH5X1WZQScTHTz1wjg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(11,'Bank BGJ 12','https://lh3.googleusercontent.com/h5k__uR8IRNa2SZZfTiIudmOVGZestJaCt1rzq94bp1N5CcJda90E5Kf_XcTTcU3CgA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(12,'BPR 13','https://lh5.googleusercontent.com/K3NzNSwM69l03ztMuNFAURaHPL9CJjIhd-zTz1-z1oG3AypZOghfldopzFzcPch0OSk=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(13,'PT. BPR Madani Sejahtera Abadi 14','https://lh3.googleusercontent.com/23l0NDX97A-m2ZA0_Li6xcSpBuaQJkrVFkrKIYt7-MkrQrBjIO9XXkXCmghSkbebO7c=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(14,'PT. LKM Sumedang 15','https://lh5.googleusercontent.com/H9q2tZuY1r1h0tAUDfcXnCZpZekhMdyBGUIH73_mYG8fvXMOh8sI1x93Mle4X37YitY=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(15,'BKPD Cijulang 16','https://lh5.googleusercontent.com/m-u7LpoCok1VGKaQsgV8ffwed9uJ27mbPkPoo4oVVcLFOU7Mjc7OXr0omyOzSZBlwwg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(16,'BPR SMA 17','https://lh3.googleusercontent.com/Xk0M7EFtSjVbaX1obGxeFiczAAA0tBw-N-MGOLOUg2CLzT-Q3NBXjFZkBc3BGOn4FcA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(17,'Bank Galuh 18','https://lh6.googleusercontent.com/peZWxSrAo1NyaFxJRWeh8ZS3RZKk5RO4Ef9yBMgrFqUihFjDCydJz6urCFBw3hIqaXo=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(18,'Bank Kota Bogor 19','https://lh6.googleusercontent.com/0gS924c9wtllNnurxRJAOEVZ8rgUYp-atcrCxJrx2ADpeGZ50RH5X1WZQScTHTz1wjg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(19,'Bank BGJ 20','https://lh3.googleusercontent.com/h5k__uR8IRNa2SZZfTiIudmOVGZestJaCt1rzq94bp1N5CcJda90E5Kf_XcTTcU3CgA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(20,'BPR 21','https://lh5.googleusercontent.com/K3NzNSwM69l03ztMuNFAURaHPL9CJjIhd-zTz1-z1oG3AypZOghfldopzFzcPch0OSk=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(21,'PT. BPR Madani Sejahtera Abadi 22','https://lh3.googleusercontent.com/23l0NDX97A-m2ZA0_Li6xcSpBuaQJkrVFkrKIYt7-MkrQrBjIO9XXkXCmghSkbebO7c=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(22,'PT. LKM Sumedang 23','https://lh5.googleusercontent.com/H9q2tZuY1r1h0tAUDfcXnCZpZekhMdyBGUIH73_mYG8fvXMOh8sI1x93Mle4X37YitY=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(23,'BKPD Cijulang 24','https://lh5.googleusercontent.com/m-u7LpoCok1VGKaQsgV8ffwed9uJ27mbPkPoo4oVVcLFOU7Mjc7OXr0omyOzSZBlwwg=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(24,'BPR SMA 25','https://lh3.googleusercontent.com/Xk0M7EFtSjVbaX1obGxeFiczAAA0tBw-N-MGOLOUg2CLzT-Q3NBXjFZkBc3BGOn4FcA=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `company_profile_videos`
+--
+
+DROP TABLE IF EXISTS `company_profile_videos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `company_profile_videos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_video` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_profile_videos`
+--
+
+LOCK TABLES `company_profile_videos` WRITE;
+/*!40000 ALTER TABLE `company_profile_videos` DISABLE KEYS */;
+INSERT INTO `company_profile_videos` VALUES (1,'Multipilar Company Profile Video ','https://www.youtube.com/embed/a1KWAeL4KfA',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `company_profile_videos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `company_values`
+--
+
+DROP TABLE IF EXISTS `company_values`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `company_values` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_values`
+--
+
+LOCK TABLES `company_values` WRITE;
+/*!40000 ALTER TABLE `company_values` DISABLE KEYS */;
+INSERT INTO `company_values` VALUES (1,'Ikut','https://lh6.googleusercontent.com/vv79RU0XYqTBYoImRfdWDtTrqD6f1kJQ4tjUrv8kbbXV7yzk9SzG_ugzhQt1RTvzisU=w2400',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `company_values` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `contact_forms`
+--
+
+DROP TABLE IF EXISTS `contact_forms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contact_forms` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_id` bigint unsigned DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer` text COLLATE utf8mb4_unicode_ci,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contact_forms`
+--
+
+LOCK TABLES `contact_forms` WRITE;
+/*!40000 ALTER TABLE `contact_forms` DISABLE KEYS */;
+INSERT INTO `contact_forms` VALUES (1,'Elizabeth Bruen','Parisian, McClure and Rippin','jacklyn.grady@schneider.net',222,'3304405556','Ratione eos eum a maxime.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Erna Price','Murazik-Braun','alvis45@metz.info',125,'0565678640','Ipsam nesciunt accusamus accusamus aut dolor et.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Alexa Jones','Bosco, Kozey and Steuber','geoffrey.smith@goldner.com',135,'6260155758','Distinctio labore nobis nobis saepe voluptatem fugiat.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Yasmin Reinger','White, Huels and Langworth','larissa41@schinner.com',125,'0034382744','Culpa et quidem nostrum ducimus.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Miss Roslyn Grady MD','Price, Feest and Batz','damion71@wiza.org',206,'5970953666','Totam ratione enim eos harum molestiae voluptatem et nemo.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Audie Becker','Wiza-Lehner','maxine20@hill.com',198,'8237563266','Expedita dolorum explicabo dolore voluptatem corporis modi.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'Jayden Gerhold','Kilback-Bernhard','pweimann@steuber.com',59,'3284586403','Dolores quae est et excepturi.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'Kris Reilly','Ritchie-Legros','ccarroll@hammes.com',68,'4486415729','Consectetur harum soluta sed assumenda dolores qui dicta.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'Malachi Cruickshank','O\'Hara, Stiedemann and Deckow','vhaag@weber.biz',28,'4923363135','Perspiciatis dolores nulla quia nostrum.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,'Lambert Simonis II','Crooks, Boyer and Fritsch','barton82@boehm.com',119,'7758111690','Facilis dolorum aliquid vitae sit eligendi omnis.',NULL,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `contact_forms` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `countries`
+--
+
+DROP TABLE IF EXISTS `countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `countries` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dial_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countries`
+--
+
+LOCK TABLES `countries` WRITE;
+/*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+INSERT INTO `countries` VALUES (1,'Afghanistan','AF','+93',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(2,'Aland Islands','AX','+358',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(3,'Albania','AL','+355',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(4,'Algeria','DZ','+213',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(5,'AmericanSamoa','AS','+1684',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(6,'Andorra','AD','+376',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(7,'Angola','AO','+244',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(8,'Anguilla','AI','+1264',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(9,'Antarctica','AQ','+672',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(10,'Antigua and Barbuda','AG','+1268',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(11,'Argentina','AR','+54',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(12,'Armenia','AM','+374',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(13,'Aruba','AW','+297',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(14,'Australia','AU','+61',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(15,'Austria','AT','+43',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(16,'Azerbaijan','AZ','+994',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(17,'Bahamas','BS','+1242',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(18,'Bahrain','BH','+973',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(19,'Bangladesh','BD','+880',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(20,'Barbados','BB','+1246',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(21,'Belarus','BY','+375',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(22,'Belgium','BE','+32',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(23,'Belize','BZ','+501',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(24,'Benin','BJ','+229',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(25,'Bermuda','BM','+1441',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(26,'Bhutan','BT','+975',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(27,'Bolivia, Plurinational State of','BO','+591',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(28,'Bosnia and Herzegovina','BA','+387',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(29,'Botswana','BW','+267',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(30,'Brazil','BR','+55',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(31,'British Indian Ocean Territory','IO','+246',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(32,'Brunei Darussalam','BN','+673',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(33,'Bulgaria','BG','+359',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(34,'Burkina Faso','BF','+226',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(35,'Burundi','BI','+257',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(36,'Cambodia','KH','+855',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(37,'Cameroon','CM','+237',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(38,'Canada','CA','+1',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(39,'Cape Verde','CV','+238',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(40,'Cayman Islands','KY','+ 345',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(41,'Central African Republic','CF','+236',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(42,'Chad','TD','+235',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(43,'Chile','CL','+56',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(44,'China','CN','+86',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(45,'Christmas Island','CX','+61',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(46,'Cocos (Keeling) Islands','CC','+61',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(47,'Colombia','CO','+57',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(48,'Comoros','KM','+269',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(49,'Congo','CG','+242',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(50,'Congo, The Democratic Republic of the Congo','CD','+243',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(51,'Cook Islands','CK','+682',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(52,'Costa Rica','CR','+506',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(53,'Cote d\'Ivoire','CI','+225',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(54,'Croatia','HR','+385',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(55,'Cuba','CU','+53',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(56,'Cyprus','CY','+357',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(57,'Czech Republic','CZ','+420',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(58,'Denmark','DK','+45',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(59,'Djibouti','DJ','+253',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(60,'Dominica','DM','+1767',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(61,'Dominican Republic','DO','+1849',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(62,'Ecuador','EC','+593',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(63,'Egypt','EG','+20',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(64,'El Salvador','SV','+503',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(65,'Equatorial Guinea','GQ','+240',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(66,'Eritrea','ER','+291',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(67,'Estonia','EE','+372',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(68,'Ethiopia','ET','+251',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(69,'Falkland Islands (Malvinas)','FK','+500',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(70,'Faroe Islands','FO','+298',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(71,'Fiji','FJ','+679',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(72,'Finland','FI','+358',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(73,'France','FR','+33',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(74,'French Guiana','GF','+594',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(75,'French Polynesia','PF','+689',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(76,'Gabon','GA','+241',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(77,'Gambia','GM','+220',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(78,'Georgia','GE','+995',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(79,'Germany','DE','+49',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(80,'Ghana','GH','+233',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(81,'Gibraltar','GI','+350',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(82,'Greece','GR','+30',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(83,'Greenland','GL','+299',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(84,'Grenada','GD','+1473',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(85,'Guadeloupe','GP','+590',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(86,'Guam','GU','+1671',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(87,'Guatemala','GT','+502',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(88,'Guernsey','GG','+44',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(89,'Guinea','GN','+224',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(90,'Guinea-Bissau','GW','+245',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(91,'Guyana','GY','+595',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(92,'Haiti','HT','+509',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(93,'Holy See (Vatican City State)','VA','+379',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(94,'Honduras','HN','+504',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(95,'Hong Kong','HK','+852',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(96,'Hungary','HU','+36',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(97,'Iceland','IS','+354',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(98,'India','IN','+91',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(99,'Indonesia','ID','+62',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(100,'Iran, Islamic Republic of Persian Gulf','IR','+98',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(101,'Iraq','IQ','+964',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(102,'Ireland','IE','+353',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(103,'Isle of Man','IM','+44',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(104,'Israel','IL','+972',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(105,'Italy','IT','+39',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(106,'Jamaica','JM','+1876',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(107,'Japan','JP','+81',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(108,'Jersey','JE','+44',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(109,'Jordan','JO','+962',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(110,'Kazakhstan','KZ','+77',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(111,'Kenya','KE','+254',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(112,'Kiribati','KI','+686',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(113,'Korea, Democratic People\'s Republic of Korea','KP','+850',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(114,'Korea, Republic of South Korea','KR','+82',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(115,'Kuwait','KW','+965',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(116,'Kyrgyzstan','KG','+996',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(117,'Laos','LA','+856',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(118,'Latvia','LV','+371',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(119,'Lebanon','LB','+961',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(120,'Lesotho','LS','+266',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(121,'Liberia','LR','+231',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(122,'Libyan Arab Jamahiriya','LY','+218',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(123,'Liechtenstein','LI','+423',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(124,'Lithuania','LT','+370',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(125,'Luxembourg','LU','+352',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(126,'Macao','MO','+853',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(127,'Macedonia','MK','+389',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(128,'Madagascar','MG','+261',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(129,'Malawi','MW','+265',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(130,'Malaysia','MY','+60',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(131,'Maldives','MV','+960',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(132,'Mali','ML','+223',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(133,'Malta','MT','+356',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(134,'Marshall Islands','MH','+692',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(135,'Martinique','MQ','+596',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(136,'Mauritania','MR','+222',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(137,'Mauritius','MU','+230',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(138,'Mayotte','YT','+262',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(139,'Mexico','MX','+52',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(140,'Micronesia, Federated States of Micronesia','FM','+691',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(141,'Moldova','MD','+373',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(142,'Monaco','MC','+377',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(143,'Mongolia','MN','+976',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(144,'Montenegro','ME','+382',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(145,'Montserrat','MS','+1664',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(146,'Morocco','MA','+212',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(147,'Mozambique','MZ','+258',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(148,'Myanmar','MM','+95',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(149,'Namibia','NA','+264',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(150,'Nauru','NR','+674',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(151,'Nepal','NP','+977',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(152,'Netherlands','NL','+31',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(153,'Netherlands Antilles','AN','+599',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(154,'New Caledonia','NC','+687',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(155,'New Zealand','NZ','+64',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(156,'Nicaragua','NI','+505',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(157,'Niger','NE','+227',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(158,'Nigeria','NG','+234',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(159,'Niue','NU','+683',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(160,'Norfolk Island','NF','+672',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(161,'Northern Mariana Islands','MP','+1670',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(162,'Norway','NO','+47',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(163,'Oman','OM','+968',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(164,'Pakistan','PK','+92',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(165,'Palau','PW','+680',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(166,'Palestinian Territory, Occupied','PS','+970',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(167,'Panama','PA','+507',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(168,'Papua New Guinea','PG','+675',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(169,'Paraguay','PY','+595',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(170,'Peru','PE','+51',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(171,'Philippines','PH','+63',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(172,'Pitcairn','PN','+872',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(173,'Poland','PL','+48',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(174,'Portugal','PT','+351',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(175,'Puerto Rico','PR','+1939',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(176,'Qatar','QA','+974',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(177,'Romania','RO','+40',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(178,'Russia','RU','+7',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(179,'Rwanda','RW','+250',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(180,'Reunion','RE','+262',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(181,'Saint Barthelemy','BL','+590',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(182,'Saint Helena, Ascension and Tristan Da Cunha','SH','+290',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(183,'Saint Kitts and Nevis','KN','+1869',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(184,'Saint Lucia','LC','+1758',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(185,'Saint Martin','MF','+590',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(186,'Saint Pierre and Miquelon','PM','+508',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(187,'Saint Vincent and the Grenadines','VC','+1784',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(188,'Samoa','WS','+685',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(189,'San Marino','SM','+378',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(190,'Sao Tome and Principe','ST','+239',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(191,'Saudi Arabia','SA','+966',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(192,'Senegal','SN','+221',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(193,'Serbia','RS','+381',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(194,'Seychelles','SC','+248',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(195,'Sierra Leone','SL','+232',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(196,'Singapore','SG','+65',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(197,'Slovakia','SK','+421',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(198,'Slovenia','SI','+386',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(199,'Solomon Islands','SB','+677',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(200,'Somalia','SO','+252',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(201,'South Africa','ZA','+27',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(202,'South Sudan','SS','+211',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(203,'South Georgia and the South Sandwich Islands','GS','+500',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(204,'Spain','ES','+34',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(205,'Sri Lanka','LK','+94',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(206,'Sudan','SD','+249',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(207,'Suriname','SR','+597',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(208,'Svalbard and Jan Mayen','SJ','+47',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(209,'Swaziland','SZ','+268',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(210,'Sweden','SE','+46',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(211,'Switzerland','CH','+41',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(212,'Syrian Arab Republic','SY','+963',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(213,'Taiwan','TW','+886',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(214,'Tajikistan','TJ','+992',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(215,'Tanzania, United Republic of Tanzania','TZ','+255',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(216,'Thailand','TH','+66',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(217,'Timor-Leste','TL','+670',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(218,'Togo','TG','+228',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(219,'Tokelau','TK','+690',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(220,'Tonga','TO','+676',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(221,'Trinidad and Tobago','TT','+1868',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(222,'Tunisia','TN','+216',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(223,'Turkey','TR','+90',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(224,'Turkmenistan','TM','+993',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(225,'Turks and Caicos Islands','TC','+1649',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(226,'Tuvalu','TV','+688',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(227,'Uganda','UG','+256',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(228,'Ukraine','UA','+380',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(229,'United Arab Emirates','AE','+971',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(230,'United Kingdom','GB','+44',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(231,'United States','US','+1',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(232,'Uruguay','UY','+598',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(233,'Uzbekistan','UZ','+998',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(234,'Vanuatu','VU','+678',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(235,'Venezuela, Bolivarian Republic of Venezuela','VE','+58',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(236,'Vietnam','VN','+84',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(237,'Virgin Islands, British','VG','+1284',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(238,'Virgin Islands, U.S.','VI','+1340',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(239,'Wallis and Futuna','WF','+681',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(240,'Yemen','YE','+967',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(241,'Zambia','ZM','+260',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(242,'Zimbabwe','ZW','+263',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `demos`
+--
+
+DROP TABLE IF EXISTS `demos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `demos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `country_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `industry` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `needs` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `demos_country_id_foreign` (`country_id`),
+  KEY `demos_product_id_foreign` (`product_id`),
+  CONSTRAINT `demos_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`),
+  CONSTRAINT `demos_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `demos`
+--
+
+LOCK TABLES `demos` WRITE;
+/*!40000 ALTER TABLE `demos` DISABLE KEYS */;
+INSERT INTO `demos` VALUES (1,199,1,'Megan Dale','Nicholson Gentry Inc','hygok@mailinator.com','706672735','Qui rerum aut debiti','Quia earum dolorem e',NULL,'2023-01-31 19:47:02','2023-01-31 19:47:02');
+/*!40000 ALTER TABLE `demos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `emails`
+--
+
+DROP TABLE IF EXISTS `emails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `emails` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `emails_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `emails`
+--
+
+LOCK TABLES `emails` WRITE;
+/*!40000 ALTER TABLE `emails` DISABLE KEYS */;
+INSERT INTO `emails` VALUES (1,'cs@multipilarbalantika.co.id',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `emails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `excellences`
+--
+
+DROP TABLE IF EXISTS `excellences`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `excellences` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `excellences`
+--
+
+LOCK TABLES `excellences` WRITE;
+/*!40000 ALTER TABLE `excellences` DISABLE KEYS */;
+INSERT INTO `excellences` VALUES (1,'Andal','Produk dan layanan kami dapat diandalkan yang dibuktikan dengan pengalaman di industri keuangan selama lebih dari 13 tahun',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(2,'Adaptif','Produk kami adaptif terhadap perubahan regulasi maupun kebutuhan instansi dan nasabah sehingga dapat dikembangkan dengan sangat adaptif terhadap kebutuhan',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22'),(3,'Support 24 Jam','Kami memberikan support 24/7 melalui IT Support kami untuk membantu jika terjadi keluhan atau kendala saat menggunakan sistem kami.',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `excellences` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `failed_jobs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faq_product`
+--
+
+DROP TABLE IF EXISTS `faq_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faq_product` (
+  `faq_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`faq_id`,`product_id`),
+  KEY `faq_product_product_id_foreign` (`product_id`),
+  CONSTRAINT `faq_product_faq_id_foreign` FOREIGN KEY (`faq_id`) REFERENCES `faqs` (`id`),
+  CONSTRAINT `faq_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faq_product`
+--
+
+LOCK TABLES `faq_product` WRITE;
+/*!40000 ALTER TABLE `faq_product` DISABLE KEYS */;
+INSERT INTO `faq_product` VALUES (1,1,NULL,NULL),(1,2,NULL,NULL),(1,3,NULL,NULL),(1,4,NULL,NULL),(2,1,NULL,NULL),(2,2,NULL,NULL),(2,3,NULL,NULL),(2,4,NULL,NULL),(3,1,NULL,NULL),(3,2,NULL,NULL),(3,3,NULL,NULL),(3,4,NULL,NULL),(4,1,NULL,NULL),(4,2,NULL,NULL),(4,3,NULL,NULL),(4,4,NULL,NULL),(5,1,NULL,NULL),(5,2,NULL,NULL),(5,3,NULL,NULL),(5,4,NULL,NULL),(6,1,NULL,NULL),(6,2,NULL,NULL),(6,3,NULL,NULL),(6,4,NULL,NULL);
+/*!40000 ALTER TABLE `faq_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `faqs`
+--
+
+DROP TABLE IF EXISTS `faqs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `faqs` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `question` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `faqs`
+--
+
+LOCK TABLES `faqs` WRITE;
+/*!40000 ALTER TABLE `faqs` DISABLE KEYS */;
+INSERT INTO `faqs` VALUES (1,'Bagaimana sistem pembayaran produk Core Banking System?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Berapa lama waktu kontrak yang disepakati untuk produk Core Banking System?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Apakah core banking system dikelar15 sudah bisa laporan ke APOLO dan SLIK?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Apakah Multipilar menyediakan mobile apps?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Bagaimana kami menghubungi pihak multipilar, ketika ada pertanyaan terkait pengoperasian sistem atau permintaan fitur baru?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Apakah sistem yang multipilar kembangkan bisa diintegrasikan dengan SMS notification?','Jawaban',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `faqs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `feature_product`
+--
+
+DROP TABLE IF EXISTS `feature_product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `feature_product` (
+  `feature_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`feature_id`,`product_id`),
+  KEY `feature_product_product_id_foreign` (`product_id`),
+  CONSTRAINT `feature_product_feature_id_foreign` FOREIGN KEY (`feature_id`) REFERENCES `features` (`id`),
+  CONSTRAINT `feature_product_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feature_product`
+--
+
+LOCK TABLES `feature_product` WRITE;
+/*!40000 ALTER TABLE `feature_product` DISABLE KEYS */;
+INSERT INTO `feature_product` VALUES (1,1,NULL,NULL),(2,1,NULL,NULL),(3,1,NULL,NULL),(4,1,NULL,NULL),(5,1,NULL,NULL),(6,1,NULL,NULL),(7,1,NULL,NULL),(8,2,NULL,NULL),(8,3,NULL,NULL),(8,4,NULL,NULL),(9,2,NULL,NULL),(10,2,NULL,NULL),(11,2,NULL,NULL),(12,2,NULL,NULL),(13,2,NULL,NULL),(14,2,NULL,NULL),(15,2,NULL,NULL),(16,3,NULL,NULL),(16,4,NULL,NULL),(17,3,NULL,NULL),(17,4,NULL,NULL),(18,3,NULL,NULL),(18,4,NULL,NULL),(19,3,NULL,NULL),(19,4,NULL,NULL),(20,3,NULL,NULL),(20,4,NULL,NULL),(21,3,NULL,NULL),(21,4,NULL,NULL),(22,3,NULL,NULL),(22,4,NULL,NULL);
+/*!40000 ALTER TABLE `feature_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `features`
+--
+
+DROP TABLE IF EXISTS `features`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `features` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `features`
+--
+
+LOCK TABLES `features` WRITE;
+/*!40000 ALTER TABLE `features` DISABLE KEYS */;
+INSERT INTO `features` VALUES (1,'Tabungan','Cek saldo & mutasi, transaksi tarik, setor, dan transfer.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Kredit','Cek BAKI & tunggakan hingga bayar angsuran & bayar tunggakan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Deposito','Cek bunga deposito hingga pencairan bunga deposito.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Laporan','Dashboard laporan laba rugi, neraca aset, neraca kewajiban, dan laporan rekening administratif.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Presensi','Presensi check in dan check out untuk petugas untuk membatasi akses aplikasi dan memantau kinerja petugas.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Otorisasi','Otorisasi bertingkat untuk memudahkan petugas melakukan approval transaksi.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'Action Plan','Action plan petugas untuk memantau kinerja dan pencapaian petugas berdasarkan action plan yang telah ditentukan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'Dashboard','Rekap laporan - laporan dalam bentuk tampilan dashboard untuk memudahkan pemantauan kinerja.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'Administrasi','Registrasi nasabah, data nasabah, hingga fitur administrasi lainnya.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,'PPBL/SDBL','Setoran, tarik, bunga, administrasi dan penutupan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(11,'Simpanan','Proses pembukaan rekening, cetak mutasi,  transaksi setor & tarik, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(12,'Deposito v2','Proses pembukaan rekening, cetak bilyet, setoran, pembayaran keuntungan, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(13,'Pembiayaan','Proses pembukaan rekening, pencairan pembiayaan, angsuran, restrukturisasi, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(14,'Inventaris','Memudahkan dokumentasi inventaris perusahaan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(15,'Laporan v2','Neraca, laba rugi, TKS, Fraud Detection System, laporan kinerja pegawai, laporan resiko pembiayaan dan likuiditas, dan laporan - laporan lainnya.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(16,'Nasabah','Registrasi nasabah hingga pencarian data nasabah.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(17,'Tabungan v2','Proses pembukaan rekening, cetak mutasi,  transaksi setor & tarik, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(18,'Kredit v2','Proses pembukaan rekening, pencairan kredit, angsuran, restrukturisasi, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(19,'Deposito v3','Proses pembukaan rekening, cetak bilyet, setoran, pembayaran bunga, hingga laporan - laporan.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(20,'Transaksi Lain','PPBL, SDBL, pinjaman diterima, inventaris, antar kantor aktiva hingga antar kantor pasiva.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(21,'Pembukuan','Update kualitas, perbaikan neraca, hingga transaksi pajak.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(22,'Laporan v3','Neraca, laba rugi, TKS, Fraud Detection System, laporan kinerja pegawai, laporan resiko kredit dan likuiditas, dan laporan - laporan lainnya.',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `features` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `migrations` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_01_05_053437_create_visions_table',1),(6,'2023_01_06_002532_create_missions_table',1),(7,'2023_01_07_004907_create_emails_table',1),(8,'2023_01_08_095122_create_countries_table',1),(9,'2023_01_09_121644_create_phone_numbers_table',1),(10,'2023_01_10_094616_create_whatsapps_table',1),(11,'2023_01_11_132452_create_addresses_table',1),(12,'2023_01_13_155455_create_excellences_table',1),(13,'2023_01_14_213554_create_company_profile_videos_table',1),(14,'2023_01_15_223818_create_contact_forms_table',1),(15,'2023_01_17_061737_create_company_values_table',1),(16,'2023_01_18_065604_create_clients_table',1),(17,'2023_01_18_075441_create_testimonies_table',1),(18,'2023_01_18_104920_create_teams_table',1),(19,'2023_01_18_105243_create_positions_table',1),(20,'2023_01_19_033221_create_categories_table',1),(21,'2023_01_19_033222_create_post_types_table',1),(22,'2023_01_19_033223_create_posts_table',1),(23,'2023_01_19_033740_create_tags_table',1),(24,'2023_01_19_060032_create_post_tag_table',1),(25,'2023_01_23_010001_create_products_table',1),(26,'2023_01_23_025544_create_demos_table',1),(27,'2023_01_24_015107_create_features_table',1),(28,'2023_01_24_024257_create_benefits_table',1),(29,'2023_01_24_040858_create_advantages_table',1),(30,'2023_01_24_042726_create_supports_table',1),(31,'2023_01_24_050419_create_faqs_table',1),(32,'2023_01_31_030912_create_promos_table',1),(33,'2023_01_31_045919_create_promo_claims_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `missions`
+--
+
+DROP TABLE IF EXISTS `missions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `missions` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `mission` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `missions`
+--
+
+LOCK TABLES `missions` WRITE;
+/*!40000 ALTER TABLE `missions` DISABLE KEYS */;
+INSERT INTO `missions` VALUES (1,'Memenuhi kebutuhan pelanggaan atas keamanan dari risiko bisnis dan kebutuhan untuk terus tumbuh dan menguntungkan melalui produk, jasa, dan layanan prima.',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `missions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+LOCK TABLES `personal_access_tokens` WRITE;
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phone_numbers`
+--
+
+DROP TABLE IF EXISTS `phone_numbers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `phone_numbers` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `country_id` bigint unsigned DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_main` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `phone_numbers_number_unique` (`number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phone_numbers`
+--
+
+LOCK TABLES `phone_numbers` WRITE;
+/*!40000 ALTER TABLE `phone_numbers` DISABLE KEYS */;
+INSERT INTO `phone_numbers` VALUES (1,99,'2652354583',1,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `phone_numbers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `positions` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `positions`
+--
+
+LOCK TABLES `positions` WRITE;
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (1,'Director',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Business Development & Marketing Manager',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'Business Development & Marketing Staff',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Head of IT',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Fullstack Developer',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Head of IT Support',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'IT Support',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'Occupation',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `post_tag`
+--
+
+DROP TABLE IF EXISTS `post_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post_tag` (
+  `post_id` bigint unsigned NOT NULL,
+  `tag_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`post_id`,`tag_id`),
+  KEY `post_tag_tag_id_foreign` (`tag_id`),
+  CONSTRAINT `post_tag_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
+  CONSTRAINT `post_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_tag`
+--
+
+LOCK TABLES `post_tag` WRITE;
+/*!40000 ALTER TABLE `post_tag` DISABLE KEYS */;
+INSERT INTO `post_tag` VALUES (1,1,NULL,NULL),(1,2,NULL,NULL),(1,3,NULL,NULL),(2,4,NULL,NULL),(2,5,NULL,NULL),(2,6,NULL,NULL),(3,7,NULL,NULL),(3,8,NULL,NULL),(3,9,NULL,NULL),(4,10,NULL,NULL),(4,11,NULL,NULL),(4,12,NULL,NULL),(5,13,NULL,NULL),(5,14,NULL,NULL),(5,15,NULL,NULL),(6,16,NULL,NULL),(6,17,NULL,NULL),(6,18,NULL,NULL),(7,19,NULL,NULL),(7,20,NULL,NULL),(7,21,NULL,NULL),(8,22,NULL,NULL),(8,23,NULL,NULL),(8,24,NULL,NULL),(9,25,NULL,NULL),(9,26,NULL,NULL),(9,27,NULL,NULL),(10,28,NULL,NULL),(10,29,NULL,NULL),(10,30,NULL,NULL),(11,31,NULL,NULL),(11,32,NULL,NULL),(11,33,NULL,NULL),(12,34,NULL,NULL),(12,35,NULL,NULL),(12,36,NULL,NULL),(13,37,NULL,NULL),(13,38,NULL,NULL),(13,39,NULL,NULL),(14,40,NULL,NULL),(14,41,NULL,NULL),(14,42,NULL,NULL),(15,43,NULL,NULL),(15,44,NULL,NULL),(15,45,NULL,NULL),(16,46,NULL,NULL),(16,47,NULL,NULL),(16,48,NULL,NULL);
+/*!40000 ALTER TABLE `post_tag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `post_types`
+--
+
+DROP TABLE IF EXISTS `post_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `post_types` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_types`
+--
+
+LOCK TABLES `post_types` WRITE;
+/*!40000 ALTER TABLE `post_types` DISABLE KEYS */;
+INSERT INTO `post_types` VALUES (1,'article','article-63d9c55f4d4bb',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'news','news-63d9c55f4d4be',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `post_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `posts` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `category_id` bigint unsigned DEFAULT NULL,
+  `post_type_id` bigint unsigned DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_hero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_l` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_s` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `published_at` timestamp NOT NULL DEFAULT '2023-01-31 18:50:21',
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `views` int NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `posts_category_id_foreign` (`category_id`),
+  KEY `posts_post_type_id_foreign` (`post_type_id`),
+  CONSTRAINT `posts_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `posts_post_type_id_foreign` FOREIGN KEY (`post_type_id`) REFERENCES `post_types` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (1,3,1,'similique unde voluptate repudiandae deserunt hic qui','vel-beatae-tempore-odit-voluptatibus-mollitia','voluptatem maxime harum molestias optio cum ullam odit est nesciunt et est doloribus voluptatem expedita aut est voluptatem hic blanditiis quam iusto ipsam accusantium quidem','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,3,1,'magni illo consectetur optio eius eaque aliquam','dicta-laborum-voluptates-repellendus-debitis-quibusdam-facilis-praesentium-ea-qui','nesciunt consequatur consequatur laborum fugit sint id qui est deleniti at pariatur atque sit praesentium laudantium voluptatum vel tenetur enim optio dolorem molestias cum in','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,2,2,'voluptatem rerum molestias reiciendis asperiores similique repellendus','iure-vel-deleniti-illum-nihil-rerum-quia-et-assumenda','est quia qui praesentium voluptas corporis animi itaque non eos iste earum nihil quo et consequatur quis ex dolor rerum beatae nihil incidunt ut id','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,3,2,'et eius inventore natus necessitatibus nihil ab','laudantium-sint-est-et-sint-et-eum-molestiae','sint quia est eum aperiam ab a accusantium voluptatem tenetur deserunt est provident alias fuga consequuntur quis at dolorem repellat accusantium tenetur eos beatae maiores','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,1,2,'est culpa et ullam animi accusantium a','voluptas-corrupti-pariatur-laudantium-id-quos-ut-adipisci-ad-sint','dolor quod asperiores id non voluptate quisquam natus minima deserunt culpa accusantium deserunt dolorum ipsum est aspernatur est beatae ullam similique unde repudiandae perferendis sapiente','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,2,2,'et quibusdam et ea occaecati accusamus molestias','nam-ut-non-corporis-sunt-inventore','illo quia aut quo porro repellat dolorem nihil accusantium et aspernatur consectetur voluptates cum molestiae laudantium voluptatem dolor repellendus fugit maxime qui dicta veniam at','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,3,2,'facere voluptate aut illum ut assumenda rerum','quasi-aspernatur-voluptatem-error-provident-repellendus-eius-quo-alias','reiciendis explicabo quis nobis ullam consequatur qui illum molestiae et dolorum ea porro inventore quo iusto quis tempora nemo ipsam omnis atque odit perspiciatis placeat','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,2,2,'quia repellendus amet sed vel rerum consequatur','deserunt-quia-quia-veniam-qui-itaque-fugiat-quo-dolores-ea','quo autem in est alias eum ut id voluptatem rerum asperiores dolor fugiat ut quam sapiente quis optio dolorem iure maxime quos consequuntur iusto et','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,3,1,'nisi vel veritatis qui eligendi ea dolorem','molestiae-fugit-aliquam-qui-nam-sit-aut-quaerat-adipisci','est ea rerum debitis reiciendis et et deserunt labore accusamus quod explicabo rem accusantium cumque aut ut eum nesciunt maiores necessitatibus vero ex animi ut','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,2,2,'error voluptas molestiae enim eligendi doloremque ab','numquam-a-vel-voluptate-occaecati-eveniet-enim-libero','recusandae tenetur laborum illum provident consectetur quasi quia qui corrupti quis ipsum ab nostrum nobis nihil esse laboriosam officia accusamus animi maiores optio rerum possimus','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(11,1,1,'reprehenderit quod laborum blanditiis et rerum accusantium','et-qui-officiis-ducimus-quis-sint-reprehenderit-quod-sed-in','ut molestias sequi qui ratione vel qui commodi facilis ducimus est commodi et recusandae sunt accusantium sed vel molestiae deleniti quis error omnis suscipit consequuntur','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(12,1,1,'eum aut excepturi sit occaecati ullam quia','dolores-error-dolor-et-ducimus-molestiae','dolores necessitatibus quia sed velit distinctio qui aspernatur autem ipsa voluptatem vel voluptatum est qui totam rerum non reiciendis consequatur sit dolore dolorum placeat ea','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(13,2,2,'porro quia vero voluptas nam harum et','rerum-doloribus-laboriosam-alias-vero-placeat','qui doloremque recusandae ipsum placeat voluptatem deleniti incidunt commodi aut et corrupti perferendis in et non quod nihil ab ipsam facere unde eligendi voluptatem velit','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(14,3,2,'a qui vel ut doloremque aliquam quo','impedit-autem-vero-fugiat-itaque-iste','et expedita aut sed placeat vel eius recusandae tempora optio mollitia animi reprehenderit inventore qui doloribus quia id sapiente qui id nostrum eum ad iure','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',0,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(15,1,1,'ipsam veniam repellat consequatur sed cumque quo','voluptas-sunt-vero-repudiandae-optio-tenetur','est laudantium corrupti odit nobis saepe consequatur ut alias rerum et dolor velit eum quo consectetur laborum at libero aliquam sequi sed praesentium similique culpa','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(16,2,1,'fugiat unde et vel et aut repellendus','velit-distinctio-atque-ullam-suscipit-commodi-quo','qui quibusdam omnis et harum aut a odio magni est omnis est animi aperiam est non facere dicta voluptatem voluptatibus omnis veniam qui velit et','<p>Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lectus nibh. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Donec sollicitudin molestie malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p><p>Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Nulla porttitor accumsan tincidunt. Nulla porttitor accumsan tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Sed porttitor lectus nibh. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Proin eget tortor risus. Nulla quis lorem ut libero malesuada feugiat. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.</p><p>Nulla quis lorem ut libero malesuada feugiat. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>','https://source.unsplash.com/random','https://source.unsplash.com/random','https://source.unsplash.com/random','2023-01-31 18:50:21',1,0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_support`
+--
+
+DROP TABLE IF EXISTS `product_support`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product_support` (
+  `product_id` bigint unsigned NOT NULL,
+  `support_id` bigint unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`product_id`,`support_id`),
+  KEY `product_support_support_id_foreign` (`support_id`),
+  CONSTRAINT `product_support_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `product_support_support_id_foreign` FOREIGN KEY (`support_id`) REFERENCES `supports` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_support`
+--
+
+LOCK TABLES `product_support` WRITE;
+/*!40000 ALTER TABLE `product_support` DISABLE KEYS */;
+INSERT INTO `product_support` VALUES (1,1,NULL,NULL),(1,2,NULL,NULL),(1,3,NULL,NULL),(1,4,NULL,NULL),(1,5,NULL,NULL),(2,1,NULL,NULL),(2,2,NULL,NULL),(2,3,NULL,NULL),(2,4,NULL,NULL),(2,5,NULL,NULL),(2,6,NULL,NULL),(2,7,NULL,NULL),(3,1,NULL,NULL),(3,2,NULL,NULL),(3,3,NULL,NULL),(3,4,NULL,NULL),(3,5,NULL,NULL),(3,6,NULL,NULL),(3,7,NULL,NULL),(4,1,NULL,NULL),(4,2,NULL,NULL),(4,3,NULL,NULL),(4,4,NULL,NULL),(4,5,NULL,NULL),(4,6,NULL,NULL),(4,7,NULL,NULL);
+/*!40000 ALTER TABLE `product_support` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `products` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_hero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_feature` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_benefit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_benefit_mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Simfoni Mobile','Multipilar Balantika menghadirkan produk Simfoni Mobile  untuk memudahkan petugas melakukan operasional di luar kantor dengan sistem laku pandai.','images/products/J7a84dK27frwt9r3KC9uIIWmHtQEgUJdiQB69ezz.png','images/products/A2W9SdPRa16tHLmsLXrj4aa2KzwNGh1bd56ypyLs.png','images/products/PtRaE8Sv7yhkdiZUzBhoLEOSBRTm3jPoqNcCf8lY.png','images/products/dADQM3al8VuvwWX8tByYBHAyHuVxk57woeGYrjxC.png',NULL,'2023-01-31 18:58:30','2023-01-31 18:58:30'),(2,'Simfoni BMT','Multipilar Balantika menghadirkan produk Core Banking System (CBS) Simfoni BMT untuk mendukung proses operasional BMT berdasarkan prinsip syariah.','images/products/Gnfmi1Sxrf0Dk5QwvoYuEGZa65NBcTK8VBcKo6IY.png','images/products/vZX7fy5Ns0T8pktZsfp5VgKJyorovjYIVCudeAAG.png','images/products/7JdKkmFs08JtVR6EZ4KRBYIqU60YUuTIPpvaO7zN.png','images/products/hwRgkvINH3bBqCiLhO37ROeSIgGreSchBig2qWSq.png',NULL,'2023-01-31 19:06:55','2023-01-31 19:06:55'),(3,'Simfoni BPR','Multipilar Balantika menghadirkan produk Core Banking System (CBS) Simfoni BPR untuk mendukung proses operasional BPR mengolah data secara otomatis.','images/products/Mv4ISxYfu3QrmP47gbRLmfX70XmOh7utVhI2OFBs.png','images/products/Y5lXPnQxIVJOJsH1EDCacdSB4l4oJw9rw38uUIdq.png','images/products/jKFzqvu4qtRlE4sso7spKCuUlstD0pu43pSgWvsq.png','images/products/zYjMfnwBVVi10vZ5r4RAxXyF7HFsZTSsFzVpyBID.png',NULL,'2023-01-31 19:13:06','2023-01-31 19:13:06'),(4,'Simfoni LKM','Multipilar Balantika menghadirkan produk Core Banking System (CBS) Simfoni LKM untuk mendukung proses operasional LKM  menjalankan bisnisnya.','images/products/j3da4O6X8EFkmfRyvI0NOWGdrWfnxQem8QYMx89N.png','images/products/YNkq3obyJYIJtKlFBJn6HkjS29apDEX26OQ1TML8.png','images/products/gsT9GCXRlVovIrlCMITGSpTAFd2RiZfeOmv2BgAo.png','images/products/CmC6EQTGKq03M0taQ56Ex74dga4QIPLx9mPtvA2M.png',NULL,'2023-01-31 19:16:50','2023-01-31 19:16:50');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `promo_claims`
+--
+
+DROP TABLE IF EXISTS `promo_claims`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `promo_claims` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_id` bigint unsigned DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint unsigned DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `promo_claims`
+--
+
+LOCK TABLES `promo_claims` WRITE;
+/*!40000 ALTER TABLE `promo_claims` DISABLE KEYS */;
+/*!40000 ALTER TABLE `promo_claims` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `promos`
+--
+
+DROP TABLE IF EXISTS `promos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `promos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_desktop` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image_mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `started_at` timestamp NOT NULL DEFAULT '2023-01-31 18:50:22',
+  `ended_at` timestamp NOT NULL DEFAULT '2023-01-31 18:50:22',
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `promos`
+--
+
+LOCK TABLES `promos` WRITE;
+/*!40000 ALTER TABLE `promos` DISABLE KEYS */;
+INSERT INTO `promos` VALUES (1,'sunt','https://source.unsplash.com/random','https://source.unsplash.com/random','2001-10-22 13:17:33','1970-08-11 10:15:03',0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'earum','https://source.unsplash.com/random','https://source.unsplash.com/random','1996-12-09 02:28:27','1984-07-17 15:57:02',1,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'quod','https://source.unsplash.com/random','https://source.unsplash.com/random','2014-06-26 06:41:16','1988-07-18 14:19:59',0,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Promo Multipilar','images/promos/Es73wXC8VgHoXtTz79n89mJPK0Ko3JxyRy3v46GQ.png','images/promos/RCNrjnrKF87fxfRc1z1oWn6aG4O3v4Qb1rpxMQ39.jpg','2023-02-01 03:30:00','2023-04-13 16:59:00',1,NULL,'2023-01-31 19:31:15','2023-01-31 19:31:15');
+/*!40000 ALTER TABLE `promos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `supports`
+--
+
+DROP TABLE IF EXISTS `supports`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `supports` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `supports`
+--
+
+LOCK TABLES `supports` WRITE;
+/*!40000 ALTER TABLE `supports` DISABLE KEYS */;
+INSERT INTO `supports` VALUES (1,'Payment Gateway','https://lh6.googleusercontent.com/Gq0rwmHrPOtJg73kLOC4K3Y8tmf9Y2hO-65k_MVh5P6PECNoeSCLYI1L5PkG6mnRKj4=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Virtual Account','https://lh4.googleusercontent.com/grcgbhEupBZpgNrx8XDgXuOWgzbjyVrbM_42pX5KwBA7Nfx2rLKi9283rKeFz_K2Kyk=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'PPOB','https://lh6.googleusercontent.com/YTem4OAKG2pXWPKVgJCrzdDIws5s37ur9EcgTesY33Nvhsogj6MhEyhWPdT4OnStwgw=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'SMS/WA Notification','https://lh5.googleusercontent.com/_S6dgZLrNxJttjuAxbfPKgo1oCHJfLsAfTDsNgxrcQQvjLklNnoFxqOzrWxeLab2uig=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'Mobile App Nasabah','https://lh4.googleusercontent.com/UJ-UEmP8Vi0ZJ8bgDHPzTm3mIvq7Qt263J5feXsOSzdONjRVM9X8qZ8Iw6sGj7NGXxY=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'Simfoni Mobile','https://lh5.googleusercontent.com/oRh1L0iXXoCOTRT1NypycdJ9hM3WbzvL1pXaXO0YO0Nokb_lqaELZF5yShPer9aXlmo=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'Portal Web Nasabah','https://lh4.googleusercontent.com/79x-0BmMXo7RQox-vKbGsVodSKwmdPlmdy4a4bBYvcl9v_KZeZkIdTulLy0xo2pm1yc=w2400',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `supports` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tags` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tags`
+--
+
+LOCK TABLES `tags` WRITE;
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+INSERT INTO `tags` VALUES (1,'ipsum','voluptas-earum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'qui','rem-molestias',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'error','temporibus',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'libero','nulla-ab',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,'dolore','odio-officiis',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,'veritatis','eum-earum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,'maxime','quaerat',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,'tenetur','harum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,'est','modi-eum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(10,'eos','consequuntur',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(11,'est','in-aliquam',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(12,'aut','aliquid-rem',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(13,'quis','ratione',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(14,'iure','repellendus-ad',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(15,'reprehenderit','et-ab',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(16,'fugiat','officiis',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(17,'illum','nam-similique',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(18,'aut','fugit',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(19,'distinctio','soluta-soluta',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(20,'praesentium','facilis-dolorum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(21,'minus','voluptates',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(22,'consequatur','consequatur-quasi',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(23,'est','impedit-praesentium',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(24,'necessitatibus','distinctio',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(25,'est','placeat',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(26,'veniam','est-tempora',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(27,'iure','id',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(28,'aperiam','veritatis-id',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(29,'sed','ea-consequatur',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(30,'quae','nemo-sequi',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(31,'exercitationem','corrupti',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(32,'inventore','voluptas-exercitationem',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(33,'dignissimos','non-est',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(34,'qui','asperiores-enim',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(35,'aliquid','reiciendis',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(36,'officiis','pariatur',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(37,'non','totam-et',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(38,'iste','aut-quod',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(39,'quia','et-in',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(40,'labore','commodi-et',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(41,'rerum','praesentium-sint',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(42,'nisi','itaque-animi',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(43,'perspiciatis','aut',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(44,'vero','totam-ratione',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(45,'similique','pariatur-eius',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(46,'assumenda','vel-cumque',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(47,'autem','et-dolor',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(48,'quo','quasi-dolorum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(49,'maxime','illum',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(50,'sunt','numquam-id',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(51,'est','veniam',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `teams`
+--
+
+DROP TABLE IF EXISTS `teams`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `teams` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `position_id` bigint unsigned DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `teams`
+--
+
+LOCK TABLES `teams` WRITE;
+/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` VALUES (1,1,'Arif Hidayat','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,2,'Hamid Afandy','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,3,'Fauzi Sofyan','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,4,'Haris Maulana','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(5,5,'M. Ammar Abdurrahman','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(6,6,'Diki Husna N.','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(7,7,'Ahmad Burhanudin','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(8,7,'Adi Sumantri','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(9,8,'Jajang Nurjaman','https://source.unsplash.com/random/216x287',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `testimonies`
+--
+
+DROP TABLE IF EXISTS `testimonies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `testimonies` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `testimony` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `testimonies`
+--
+
+LOCK TABLES `testimonies` WRITE;
+/*!40000 ALTER TABLE `testimonies` DISABLE KEYS */;
+INSERT INTO `testimonies` VALUES (1,'Fauzi Sofyan','Digital Analyst','BPR DIORAMA','Pelayanan sangat cepat & hasil sesuai dengan brief yang diinginkan. Pengalaman kerja sama yang cukup menyenangkan, kami mendapat banyak masukan dari tim profesional.','https://source.unsplash.com/random/80x80',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(2,'Budi Gautama','Chief Marketing Officer','PT. Niaga Global Interdimensional','Saya telah menggunakan layanan core banking sistem ini selama beberapa bulan dan sangat terkesan dengan kinerjanya. Transaksi yang cepat dan mudah, aksesibilitas yang baik, dan dukungan pelanggan yang responsif sangat memudahkan saya dalam mengelola keuangan pribadi. Saya sangat merekomendasikan layanan ini kepada siapapun yang mencari solusi perbankan yang andal dan canggih.','https://source.unsplash.com/random/80x80',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(3,'John Sunarya','Chief Operations Officer','V Manual','Saya telah menggunakan layanan core banking sistem ini selama beberapa bulan dan sangat puas dengan kinerjanya. Fitur-fitur yang tersedia sangat lengkap dan memudahkan saya dalam mengelola keuangan pribadi. Proses transaksi yang cepat dan aman membuat saya merasa nyaman dan tenang. Saya sangat merekomendasikan layanan ini kepada siapapun yang mencari solusi keuangan yang andal dan terpercaya.','https://source.unsplash.com/random/80x80',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23'),(4,'Chou Cipuan','Chief Information Officer','CV. Jaya Bersatu','Saya sangat senang dengan layanan Core Banking System yang ditawarkan oleh perusahaan ini. Sistemnya sangat cepat dan mudah digunakan, mempermudah saya dalam melakukan transaksi dan mengelola rekening bank. Layanan pelanggan juga sangat baik dan responsif dalam menangani masalah yang saya hadapi. Saya sangat merekomendasikan layanan ini kepada siapapun yang mencari solusi banking yang efisien dan dapat diandalkan.','https://source.unsplash.com/random/80x80',NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `testimonies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Admin','adminbprpurwakarta@gmail.com','multipilar',NULL,'$2y$10$WfojrObniq/VNI.lukP0bembYoG3T8snPrv8yoqjkvj6yogGH5322',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `visions`
+--
+
+DROP TABLE IF EXISTS `visions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visions` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `vision` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `visions`
+--
+
+LOCK TABLES `visions` WRITE;
+/*!40000 ALTER TABLE `visions` DISABLE KEYS */;
+INSERT INTO `visions` VALUES (1,'Memenuhi kebutuhan pelanggaan atas keamanan dari risiko bisnis dan kebutuhan untuk terus tumbuh dan menguntungkan melalui produk, jasa, dan layanan prima.',NULL,'2023-01-31 18:50:22','2023-01-31 18:50:22');
+/*!40000 ALTER TABLE `visions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `whatsapps`
+--
+
+DROP TABLE IF EXISTS `whatsapps`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `whatsapps` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `country_id` bigint unsigned DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_main` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `whatsapps_number_unique` (`number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `whatsapps`
+--
+
+LOCK TABLES `whatsapps` WRITE;
+/*!40000 ALTER TABLE `whatsapps` DISABLE KEYS */;
+INSERT INTO `whatsapps` VALUES (1,99,'8121271144',1,NULL,'2023-01-31 18:50:23','2023-01-31 18:50:23');
+/*!40000 ALTER TABLE `whatsapps` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'multipilar_new'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-02-01 10:04:33
