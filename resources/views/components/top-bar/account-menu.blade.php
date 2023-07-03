@@ -35,6 +35,11 @@
                 </a>
             </li>
             <li>
+                <a class="dropdown-item hover:bg-white/5" href="{{ route('admin.face.create') }}">
+                    <i class="mr-2 h-4 w-4" data-lucide="smile"></i> Pengenalan Wajah
+                </a>
+            </li>
+            <li>
                 <hr class="dropdown-divider border-white/[0.08]">
             </li>
             <li>
