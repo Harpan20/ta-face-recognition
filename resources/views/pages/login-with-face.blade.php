@@ -89,15 +89,8 @@
                     >
                         @csrf
                         <div class="intro-x mt-8">
-                            {{-- <input
-                                class="intro-x login__input form-control {{ session()->has('notif') ? 'border-danger' : '' }} block py-3 px-4"
-                                name="username"
-                                data-username=""
-                                type="text"
-                                placeholder="Username"
-                            > --}}
                             <input
-                                class="intro-x login__input form-control py-3 px-4 hidden"
+                                class="intro-x login__input form-control hidden py-3 px-4"
                                 name="image"
                                 data-image=""
                                 type="text"
@@ -122,12 +115,25 @@
                                 data-face-canvas
                             ></canvas>
                             <img
-                                class="hidden"
+                                class="hidden rounded"
                                 data-face-image
                                 alt="face"
                             >
                         </div>
-                        <div class="intro-x mt-5 text-center xl:mt-8 xl:text-left">
+                        <div class="intro-x mt-5 text-center xl:mt-8 xl:text-center">
+                            <p>
+                                <span>
+                                    Login menggunakan metode
+                                </span>
+                                <a
+                                    class="font-semibold text-blue-700"
+                                    href="{{ route('admin.login') }}"
+                                >
+                                    biasa
+                                </a>
+                            </p>
+                        </div>
+                        <div class="intro-x mt-5 flex flex-col gap-2 text-center xl:mt-8 xl:text-left">
                             <button
                                 class="btn btn-primary w-full py-3 px-4 align-top"
                                 data-face-button-capture
@@ -135,8 +141,6 @@
                             >
                                 {{ __('Capture') }}
                             </button>
-                        </div>
-                        <div class="intro-x mt-5 text-center xl:mt-8 xl:text-left">
                             <button class="btn btn-primary w-full py-3 px-4 align-top">
                                 {{ __('Login') }}
                             </button>
