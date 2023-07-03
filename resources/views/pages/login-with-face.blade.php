@@ -165,7 +165,7 @@
 
     <!-- BEGIN: JS Assets-->
     @vite('resources/js/app.js')
-    <script>
+    <script type="text/javascript">
         const username = document.querySelector('[data-username]'),
             image = document.querySelector('[data-image]'),
             faceVideo = document.querySelector('[data-face-video]'),
@@ -219,6 +219,50 @@
                 element: e.target
             })
         })
+    </script>
+    <script type="text/javascript">
+        const toggleDarkMode = document.querySelector("[data-toggle-dark-mode-button]");
+        const baseTheme = document.documentElement;
+        const darkModeIndicator = document.querySelector("[data-dark-mode-indicator]")
+        let darkMode;
+
+        if (localStorage.getItem("dark-mode") === null) {
+            localStorage.setItem("dark-mode", "disabled");
+        }
+        darkMode = localStorage.getItem("dark-mode");
+
+        const enableDarkMode = () => {
+            if (baseTheme.classList.contains("light")) {
+                baseTheme.classList.remove("light");
+            }
+            baseTheme.classList.add("dark");
+            darkModeIndicator.classList.add("dark-mode-switcher__toggle--active");
+            localStorage.setItem("dark-mode", "enabled");
+        };
+
+        const disableDarkMode = () => {
+            if (baseTheme.classList.contains("dark")) {
+                baseTheme.classList.remove("dark");
+            }
+            if (darkModeIndicator.classList.contains("dark-mode-switcher__toggle--active")) {
+                darkModeIndicator.classList.remove("dark-mode-switcher__toggle--active");
+            }
+            baseTheme.classList.add("light");
+            localStorage.setItem("dark-mode", "disabled");
+        };
+
+        if (darkMode === "enabled") {
+            enableDarkMode(); // set state of darkMode on page load
+        }
+
+        toggleDarkMode.addEventListener("click", (e) => {
+            darkMode = localStorage.getItem("dark-mode"); // update darkMode when clicked
+            if (darkMode === "disabled") {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+        });
     </script>
     <!-- END: JS Assets-->
 </body>
