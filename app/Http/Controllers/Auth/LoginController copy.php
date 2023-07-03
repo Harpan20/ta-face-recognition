@@ -61,8 +61,6 @@ class LoginController extends Controller
         return redirect()->route('admin.login');
     }
 
-
-    // face login
     public function loginWithFaceIndex()
     {
         return view('pages.login-with-face');
@@ -70,6 +68,8 @@ class LoginController extends Controller
 
     public function loginWithFaceCheck(Request $request)
     {
+
+
         // $username = $request->username;
         // $image = str_replace("data:image/png:base64,", "", $username = $request->image);
         $image = str_replace("data:image/png:base64,", "", $request->image);
@@ -77,29 +77,20 @@ class LoginController extends Controller
         $error = "-";
         Log::info($response);
 
-        // dd($response['risetai']);
-        // if (isset($response['risetai']['return'][0]['user_name'])) {
-        if (isset($response['risetai'])) {
+        if (isset($response['risetai']['return'][0]['user_name'])) {
             // $role = explode("-", $response['risetai']['return'][0]['user_id'])[0];
             // $api_username = str_replace($role . "-", "", $response['risetai']['return'][0]['user_id']);
 
-            // dd($response['risetai']['return']);
-
             if ($response['risetai']['status'] == 200) {
+                // $user = User::where('username', 'multipilar')->first();
+                $user = User::where('username', $response['risetai']['return'][0]['user_id'])->first();
 
-                if ($response['risetai']['return'][0]['confidence_level'] >= 0.95) {
-                    // $user = User::where('username', 'multipilar')->first();
-                    $user = User::where('username', $response['risetai']['return'][0]['user_id'])->first();
-
-                    if ($user) {
-                        Auth::login($user);
-                        $request->session()->regenerate();
-                        return redirect()->route('admin.dashboard');
-                    } else {
-                        return back()->with('notif', 'Pengguna tidak dikenal');
-                    }
+                if ($user) {
+                    Auth::login($user);
+                    $request->session()->regenerate();
+                    return redirect()->route('admin.dashboard');
                 } else {
-                    return back()->with('notif', 'Posisikan wajah anda dengan benar');
+                    return back()->with('notif', 'Pengguna tidak dikenal');
                 }
             } else {
                 return back()->with('notif', 'Pengguna tidak dikenal');
@@ -107,8 +98,7 @@ class LoginController extends Controller
         }
     }
 
-    function responseUserNotFound()
-    {
+    function responseUserNotFound() {
         return back()->with('notif', 'Pengguna tidak dikenal');
     }
 }
