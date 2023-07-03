@@ -84,6 +84,7 @@ class LoginController extends Controller
             // $api_username = str_replace($role . "-", "", $response['risetai']['return'][0]['user_id']);
 
             // dd($response['risetai']['return']);
+            // test
 
             if ($response['risetai']['status'] == 200) {
 
