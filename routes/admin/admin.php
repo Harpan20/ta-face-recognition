@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdvantageController;
+use App\Http\Controllers\Auth\FaceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\CategoryController;
@@ -45,6 +46,11 @@ Route::post('login-with-face', [LoginController::class, 'loginWithFaceCheck'])->
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::post('logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+    // pengenalan wajah
+    Route::get('faces/create', [FaceController::class, 'create'])->name('admin.face.create');
+    Route::post('faces/create', [FaceController::class, 'store'])->name('admin.face.store');
+    Route::delete('faces/create', [FaceController::class, 'destroy'])->name('admin.face.destroy');
 
     // profile
     Route::resource('visions', VisionController::class)->except(['show']);
