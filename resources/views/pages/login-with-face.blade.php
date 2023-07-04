@@ -38,7 +38,7 @@
 </head>
 <!-- END: Head -->
 
-<body class="login">
+<body class="login !overflow-y-scroll md:!overflow-y-hidden">
     <div class="container sm:px-10">
         <div class="block grid-cols-2 gap-4 xl:grid">
             <!-- BEGIN: Login Info -->
