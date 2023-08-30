@@ -139,13 +139,13 @@
                                     {{ __('Save') }}
                                 </button>
                             @else
-                                <a
+                                {{-- <a
                                     class="btn btn-success-soft w-24 whitespace-nowrap"
                                     href="{{ route('admin.face.download', Auth::id()) }}"
                                     target="_blank"
                                 >
                                     {{ __('Download') }}
-                                </a>
+                                </a> --}}
                                 <a
                                     class="btn btn-danger w-24"
                                     data-tw-toggle="modal"
