@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('faces/create', [FaceController::class, 'create'])->name('admin.face.create');
     Route::post('faces/create', [FaceController::class, 'store'])->name('admin.face.store');
     Route::delete('faces/create', [FaceController::class, 'destroy'])->name('admin.face.destroy');
+    Route::get('faces/download-face-image/{user}', [FaceController::class, 'downloadFaceImage'])->name('admin.face.download');
 
     // profile
     Route::resource('visions', VisionController::class)->except(['show']);

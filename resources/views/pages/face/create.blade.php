@@ -52,7 +52,7 @@
                         <div>
                             @if (!$faced[0])
                                 <input
-                                    class="intro-x login__input form-control hidden py-3 px-4"
+                                    class="intro-x login__input form-control hidden px-4 py-3"
                                     name="image"
                                     data-image=""
                                     type="text"
@@ -92,7 +92,7 @@
                                         />
                                     </svg>
                                     <div
-                                        class="absolute top-0 right-0 rounded-tr rounded-bl bg-blue-500 px-2 py-2 font-semibold text-white md:px-4 md:py-2">
+                                        class="absolute right-0 top-0 rounded-bl rounded-tr bg-blue-500 px-2 py-2 font-semibold text-white md:px-4 md:py-2">
                                         <div class="flex flex-row items-center justify-center gap-2">
                                             <svg
                                                 class="h-6 w-6 flex-shrink-0"
@@ -139,6 +139,13 @@
                                     {{ __('Save') }}
                                 </button>
                             @else
+                                {{-- <a
+                                    class="btn btn-success-soft w-24 whitespace-nowrap"
+                                    href="{{ route('admin.face.download', Auth::id()) }}"
+                                    target="_blank"
+                                >
+                                    {{ __('Download') }}
+                                </a> --}}
                                 <a
                                     class="btn btn-danger w-24"
                                     data-tw-toggle="modal"
